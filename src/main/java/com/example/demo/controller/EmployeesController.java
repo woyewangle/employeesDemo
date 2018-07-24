@@ -2,10 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.entity.Employee;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -31,30 +28,30 @@ public class EmployeesController {
         return employeeList;
     }
 
-    @GetMapping("/findEmployeeById/{id}")
+    @GetMapping("/employees/{id}")
     public Employee findEmployeeById(@PathVariable int id){
         return employeeList.stream().filter(e->e.getId()==id).collect(Collectors.toList()).get(0);
     }
 
-    @PostMapping("/addEmployee")
-    public List<Employee> addEmployeeB(@RequestBody Employee employee){
+    @PostMapping("/employees")
+    public List<Employee> addEmployee(@RequestBody Employee employee){
           employeeList.add(employee);
           return employeeList;
     }
 
-    @DeleteMapping("/deleteEmployee/{id}")
+    @DeleteMapping("/employees/{id}")
     public List<Employee> deleteEmployee(@PathVariable int id){
         Employee employee=employeeList.stream().filter(e->e.getId()==id).collect(Collectors.toList()).get(0);
         employeeList.remove(employee);
         return employeeList;
     }
 
-
-
-
-
-
-
-
+    @PatchMapping("/employees")
+    public List<Employee> modifyEmployee(@RequestBody Employee employee){
+        Employee oldEmployee=employeeList.stream().filter(e->e.getId()==employee.getId()).collect(Collectors.toList()).get(0);
+        employeeList.remove(oldEmployee);
+        employeeList.add(employee);
+        return employeeList;
+    }
 
 }
