@@ -49,8 +49,7 @@ public class EmployeesController {
     @PatchMapping("/employees")
     public List<Employee> modifyEmployee(@RequestBody Employee employee){
         Employee oldEmployee=employeeList.stream().filter(e->e.getId()==employee.getId()).collect(Collectors.toList()).get(0);
-        employeeList.remove(oldEmployee);
-        employeeList.add(employee);
+        oldEmployee.setAge(employee.getAge());
         return employeeList;
     }
 
