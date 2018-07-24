@@ -1,9 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.entity.Employee;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -37,6 +35,14 @@ public class EmployeesController {
     public Employee findEmployeeById(@PathVariable int id){
         return employeeList.stream().filter(e->e.getId()==id).collect(Collectors.toList()).get(0);
     }
+
+    @PostMapping("/employees")
+    public List<Employee> addEmployeeB(@RequestBody Employee employee){
+          employeeList.add(employee);
+          return employeeList;
+    }
+
+
 
 
 
