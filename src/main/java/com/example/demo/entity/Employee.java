@@ -1,12 +1,12 @@
 package com.example.demo.entity;
 
-public class employee{
+public class Employee {
     public int id;
     public String name;
     public int age;
     public  String gender;
 
-    public employee(int id, String name, int age, String gender) {
+    public Employee(int id, String name, int age, String gender) {
         this.id = id;
         this.name = name;
         this.age = age;
