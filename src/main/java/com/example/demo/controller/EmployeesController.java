@@ -31,16 +31,24 @@ public class EmployeesController {
         return employeeList;
     }
 
-    @GetMapping("/employees/{id}")
+    @GetMapping("/findEmployeeById/{id}")
     public Employee findEmployeeById(@PathVariable int id){
         return employeeList.stream().filter(e->e.getId()==id).collect(Collectors.toList()).get(0);
     }
 
-    @PostMapping("/employees")
+    @PostMapping("/addEmployee")
     public List<Employee> addEmployeeB(@RequestBody Employee employee){
           employeeList.add(employee);
           return employeeList;
     }
+
+    @DeleteMapping("/deleteEmployee/{id}")
+    public List<Employee> deleteEmployee(@PathVariable int id){
+        Employee employee=employeeList.stream().filter(e->e.getId()==id).collect(Collectors.toList()).get(0);
+        employeeList.remove(employee);
+        return employeeList;
+    }
+
 
 
 
